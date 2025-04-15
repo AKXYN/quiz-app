@@ -147,28 +147,46 @@ function nextQuestion() {
 // Submit quiz
 async function submitQuiz() {
     try {
-        // Get email from URL
+        // Get email and testId from URL
         const urlParams = new URLSearchParams(window.location.search);
         const email = urlParams.get('email');
         const testId = urlParams.get('id');
 
+        if (!email || !testId) {
+            throw new Error('Missing email or test ID');
+        }
+
+        // Ensure all answers are recorded
+        if (answers.length !== currentTest.questions.length) {
+            throw new Error('Please answer all questions before submitting');
+        }
+
         // Calculate total score
-        const totalScore = answers.reduce((sum, answer) => sum + answer.score, 0);
+        const totalScore = answers.reduce((sum, answer) => sum + (answer?.score || 0), 0);
         const maxScore = currentTest.questions.length * 8; // 8 is max score per question
+        const percentage = Math.round((totalScore / maxScore) * 100);
+
+        // Prepare results object
+        const results = {
+            answers: answers.map(answer => ({
+                questionId: answer.questionId,
+                score: answer.score || 0
+            })),
+            totalScore: totalScore,
+            maxScore: maxScore,
+            percentage: percentage,
+            submittedAt: new Date()
+        };
 
         // Save results
-        await firestoreOperations.saveTestResults(testId, email, {
-            answers,
-            totalScore,
-            maxScore,
-            percentage: (totalScore / maxScore) * 100
-        });
+        await firestoreOperations.saveTestResults(testId, email, results);
 
         // Show completion message
         alert('Test submitted successfully!');
         window.location.href = 'index.html';
     } catch (error) {
-        alert('Error submitting test. Please try again.');
+        console.error('Error submitting test:', error);
+        alert('Error submitting test: ' + error.message);
     }
 }
 
