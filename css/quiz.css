@@ -1,0 +1,142 @@
+/* Quiz Container */
+.quiz-container {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Test Info Section */
+.test-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.test-dates {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    color: #666;
+}
+
+/* Progress Bar */
+.progress-container {
+    margin: 20px 0;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Timer */
+.timer-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.timer {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    padding: 10px 20px;
+    border: 2px solid #2c3e50;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    line-height: 40px;
+    text-align: center;
+}
+
+/* Question Container */
+.question-container {
+    margin: 30px 0;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.option {
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option:hover {
+    background-color: #f5f5f5;
+}
+
+.option.selected {
+    background-color: #e3f2fd;
+    border-color: #2196F3;
+}
+
+/* Navigation */
+.navigation {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-next {
+    background-color: #2196F3;
+    width: auto;
+    padding: 12px 30px;
+}
+
+.btn-next:hover {
+    background-color: #1976D2;
+}
+
+/* Email Section */
+.email-section {
+    text-align: center;
+    margin: 30px 0;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.timer.warning {
+    animation: pulse 1s infinite;
+    color: #f44336;
+    border-color: #f44336;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .quiz-container {
+        padding: 20px;
+    }
+    
+    .timer {
+        font-size: 20px;
+        width: 50px;
+        height: 50px;
+        line-height: 30px;
+    }
+    
+    .option {
+        padding: 12px;
+    }
+} 

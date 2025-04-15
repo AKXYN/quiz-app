@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Values Assessment</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Core Values Assessment</h1>
+            <p>Enter your details to begin the assessment</p>
+            <form id="testForm">
+                <div class="input-group">
+                    <input type="email" id="userEmail" placeholder="Enter your email" required>
+                    <input type="text" id="testId" placeholder="Enter Test ID" required>
+                    <button type="submit">Start Assessment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Load utility script first -->
+    <script src="js/utils.js"></script>
+    <!-- Load Firebase scripts -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+        import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+        
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCuRBnVEgZ4EVFi6ZvIthFm_IUsLxD22bc",
+            authDomain: "corevaluesapp-9ca55.firebaseapp.com",
+            projectId: "corevaluesapp-9ca55",
+            storageBucket: "corevaluesapp-9ca55.firebasestorage.app",
+            messagingSenderId: "894079508319",
+            appId: "1:894079508319:web:8c7cc5a0389b87939d20ea"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        // Make db and Firestore functions available globally
+        window.db = db;
+        window.getDoc = getDoc;
+        window.doc = doc;
+        window.updateDoc = updateDoc;
+        window.arrayUnion = arrayUnion;
+    </script>
+    <!-- Then load our scripts -->
+    <script src="js/firestore.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html> 

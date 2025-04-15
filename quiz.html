@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Values Assessment</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+    <div class="container">
+        <div id="emailSection" class="card">
+            <h1>Core Values Assessment</h1>
+            <p>Please enter your email to begin the assessment</p>
+            <form id="emailForm">
+                <div class="input-group">
+                    <input type="email" id="userEmail" placeholder="Enter your email" required>
+                    <button type="submit">Continue</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="quizSection" class="card" style="display: none;">
+            <div class="quiz-header">
+                <h1 id="testName"></h1>
+                <div class="test-dates">
+                    <p>Start Date: <span id="startDate"></span></p>
+                    <p>End Date: <span id="endDate"></span></p>
+                </div>
+            </div>
+
+            <div class="quiz-content">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progressBar"></div>
+                    </div>
+                    <span id="progressText"></span>
+                </div>
+
+                <div class="timer">
+                    Time remaining: <span id="timer">30</span> seconds
+                </div>
+
+                <div class="question-container">
+                    <h2 id="questionText"></h2>
+                    <div id="optionsContainer" class="options-container"></div>
+                </div>
+
+                <button id="nextButton" class="btn-next" disabled>Next Question</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load utility script first -->
+    <script src="js/utils.js"></script>
+    <!-- Load Firebase scripts -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+        import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+        
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCuRBnVEgZ4EVFi6ZvIthFm_IUsLxD22bc",
+            authDomain: "corevaluesapp-9ca55.firebaseapp.com",
+            projectId: "corevaluesapp-9ca55",
+            storageBucket: "corevaluesapp-9ca55.firebasestorage.app",
+            messagingSenderId: "894079508319",
+            appId: "1:894079508319:web:8c7cc5a0389b87939d20ea"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        // Make db and Firestore functions available globally
+        window.db = db;
+        window.getDoc = getDoc;
+        window.doc = doc;
+        window.updateDoc = updateDoc;
+        window.arrayUnion = arrayUnion;
+    </script>
+    <!-- Then load our scripts -->
+    <script src="js/firestore.js"></script>
+    <script src="js/quiz.js"></script>
+</body>
+</html> 
