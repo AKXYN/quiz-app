@@ -165,22 +165,25 @@ async function submitQuiz() {
             answers = [];
         }
 
-        // Ensure answers array has the correct length
+        // Ensure answers array has the correct length and no undefined values
         while (answers.length < currentTest.questions.length) {
             answers.push({ questionId: answers.length, score: 0 });
         }
 
+        // Filter out any undefined values and ensure all required fields are present
+        const validAnswers = answers.map(answer => ({
+            questionId: answer.questionId || 0,
+            score: answer.score || 0
+        }));
+
         // Calculate total score
-        const totalScore = answers.reduce((sum, answer) => sum + (answer?.score || 0), 0);
+        const totalScore = validAnswers.reduce((sum, answer) => sum + answer.score, 0);
         const maxScore = currentTest.questions.length * 8; // 8 is max score per question
         const percentage = Math.round((totalScore / maxScore) * 100);
 
         // Prepare results object
         const results = {
-            answers: answers.map(answer => ({
-                questionId: answer.questionId,
-                score: answer.score || 0
-            })),
+            answers: validAnswers,
             totalScore: totalScore,
             maxScore: maxScore,
             percentage: percentage,

@@ -90,30 +90,33 @@ const firestoreOperations = {
             const testDoc = await getDoc(doc(window.db, 'tests', testId));
             const testData = testDoc.data();
             
-            // Prepare the completed student entry
+            // Prepare the completed student entry with all required fields
             const completedStudent = {
-                email,
+                email: email,
                 completed_time: new Date(),
-                score: results.totalScore,
-                percentage: results.percentage
+                score: results.totalScore || 0,
+                percentage: results.percentage || 0
+            };
+
+            // Prepare the results object with all required fields
+            const studentResults = {
+                answers: results.answers || [],
+                totalScore: results.totalScore || 0,
+                maxScore: results.maxScore || 0,
+                percentage: results.percentage || 0,
+                submittedAt: new Date()
             };
 
             // Update the test document
             await updateDoc(doc(window.db, 'tests', testId), {
-                [`results.${email}`]: {
-                    answers: results.answers,
-                    totalScore: results.totalScore,
-                    maxScore: results.maxScore,
-                    percentage: results.percentage,
-                    submittedAt: new Date()
-                },
+                [`results.${email}`]: studentResults,
                 completed: arrayUnion(completedStudent)
             });
 
             console.log('Test results saved successfully:', {
                 testId,
                 email,
-                results
+                results: studentResults
             });
         } catch (error) {
             console.error('Error saving test results:', error);
