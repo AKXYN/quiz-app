@@ -113,7 +113,11 @@ function startTimer() {
 
         if (timeLeft <= 0) {
             clearInterval(timer);
-            nextQuestion();
+            if (currentQuestionIndex < currentTest.questions.length - 1) {
+                nextQuestion();
+            } else {
+                submitQuiz();
+            }
         }
     }, 1000);
 }
@@ -156,9 +160,14 @@ async function submitQuiz() {
             throw new Error('Missing email or test ID');
         }
 
-        // Ensure all answers are recorded
-        if (answers.length !== currentTest.questions.length) {
-            throw new Error('Please answer all questions before submitting');
+        // Initialize answers array if not already done
+        if (!answers) {
+            answers = [];
+        }
+
+        // Ensure answers array has the correct length
+        while (answers.length < currentTest.questions.length) {
+            answers.push({ questionId: answers.length, score: 0 });
         }
 
         // Calculate total score

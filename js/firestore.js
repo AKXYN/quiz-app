@@ -33,10 +33,11 @@ const firestoreOperations = {
                 throw new Error('You are not authorized to take this test');
             }
 
-            // Check if student has already taken the test (checking results)
-            if (testData.results && testData.results[email]) {
+            // Check if student has already taken the test (checking results and completed array)
+            if ((testData.results && testData.results[email]) || 
+                (testData.completed && testData.completed.some(student => student.email === email))) {
                 console.log('Student has already taken the test');
-                throw new Error('You have already taken this test');
+                throw new Error('You have already taken this test. Each student can only take the test once.');
             }
 
             return {

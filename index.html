@@ -5,21 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Core Values Assessment</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
+        <div class="welcome-section">
+            <h1>Welcome to Your Core Values Assessment! 🌟</h1>
+            <div class="welcome-content">
+                <p>This assessment helps us understand how well you align with our company's core values. It's not just a test - it's an opportunity to showcase your values and how they match with our organization's culture.</p>
+                <div class="key-points">
+                    <div class="point">
+                        <span class="icon">📝</span>
+                        <p>Answer honestly and thoughtfully</p>
+                    </div>
+                    <div class="point">
+                        <span class="icon">⏱️</span>
+                        <p>Take your time with each question</p>
+                    </div>
+                    <div class="point">
+                        <span class="icon">🎯</span>
+                        <p>Show us your true self</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="card">
-            <h1>Core Values Assessment</h1>
-            <p>Enter your details to begin the assessment</p>
+            <h2>Ready to Begin?</h2>
+            <p class="subtitle">Enter your details below to start your assessment</p>
             <form id="testForm">
                 <div class="input-group">
-                    <input type="email" id="userEmail" placeholder="Enter your email" required>
-                    <input type="text" id="testId" placeholder="Enter Test ID" required>
-                    <button type="submit">Start Assessment</button>
+                    <div class="input-field">
+                        <label for="userEmail">Your Email</label>
+                        <input type="email" id="userEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="testId">Test ID</label>
+                        <input type="text" id="testId" placeholder="Enter Test ID" required>
+                    </div>
+                    <button type="submit" class="start-button">
+                        <span>Start Assessment</span>
+                        <span class="arrow">→</span>
+                    </button>
                 </div>
             </form>
         </div>
     </div>
+
     <!-- Load utility script first -->
     <script src="js/utils.js"></script>
     <!-- Load Firebase scripts -->

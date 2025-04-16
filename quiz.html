@@ -6,6 +6,7 @@
     <title>Core Values Assessment</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/quiz.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -29,25 +30,23 @@
                 </div>
             </div>
 
-            <div class="quiz-content">
-                <div class="progress-container">
-                    <div class="progress-bar">
-                        <div id="progressBar"></div>
-                    </div>
-                    <span id="progressText"></span>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progressBar"></div>
                 </div>
-
-                <div class="timer">
-                    Time remaining: <span id="timer">30</span> seconds
-                </div>
-
-                <div class="question-container">
-                    <h2 id="questionText"></h2>
-                    <div id="optionsContainer" class="options-container"></div>
-                </div>
-
-                <button id="nextButton" class="btn-next" disabled>Next Question</button>
+                <span id="progressText"></span>
             </div>
+
+            <div class="timer">
+                Time remaining: <span id="timer">30</span> seconds
+            </div>
+
+            <div class="question-container">
+                <h2 id="questionText"></h2>
+                <div id="optionsContainer" class="options-container"></div>
+            </div>
+
+            <button id="nextButton" class="btn-next" disabled>Next Question</button>
         </div>
     </div>
 
