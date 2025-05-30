@@ -40,6 +40,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Load test details
         currentTest = await firestoreOperations.checkTestAccess(testId, email);
+        answers = currentTest.questions.map((_, index) => ({
+            questionId: index,
+            score: 0
+        }));
+
         
         // Update UI with test details
         testNameElement.textContent = currentTest.name;
