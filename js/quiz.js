@@ -202,6 +202,8 @@ async function submitQuiz() {
         alert('Test submitted successfully!');
         window.location.href = 'index.html';
     } catch (error) {
+        console.log("See Below");
+        console.log(results);
         console.error('Error submitting test:', error);
         alert('Error submitting test: ' + error.message);
     }
